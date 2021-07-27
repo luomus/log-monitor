@@ -22,7 +22,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 HEALTHCHECK --interval=1m --timeout=10s \
-  CMD curl -sfI -o /dev/null 0.0.0.0:3838/status || exit 1
+  CMD curl -sfI -o /dev/null 0.0.0.0:3838/healthz || exit 1
 
 ENV HOME /home/user
 
@@ -31,7 +31,7 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY app.R /home/user/shiny/app.R
 COPY robots.txt /home/user/shiny/robots.txt
 
-RUN  touch /home/user/shiny/status \
+RUN  touch /home/user/shiny/healthz \
   && mkdir -p /home/user/logs \
   && mkdir -p /home/user/plots \
   && chgrp -R 0 /home/user \
