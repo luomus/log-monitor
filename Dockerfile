@@ -29,6 +29,7 @@ ENV HOME /home/user
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 COPY app.R /home/user/shiny/app.R
+COPY robots.txt /home/user/shiny/robots.txt
 
 RUN  mkdir -p /home/user/logs \
   && mkdir -p /home/user/plots \

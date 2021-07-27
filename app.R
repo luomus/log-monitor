@@ -335,6 +335,8 @@ server <- function(input, output, session) {
     deleteFile = TRUE
   )
 
+  addResourcePath("robots.txt", "~/shiny/robots.txt")
+
 }
 
 shinyApp(ui = ui, server = server)
