@@ -30,6 +30,7 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 COPY app.R /home/user/shiny/app.R
 COPY robots.txt /home/user/shiny/robots.txt
+COPY favicon.ico /home/user/shiny/favicon.ico
 
 RUN  touch /home/user/shiny/healthz \
   && mkdir -p /home/user/logs \
