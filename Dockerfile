@@ -22,7 +22,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 HEALTHCHECK --interval=1m --timeout=10s \
-  CMD curl -sfI -o /dev/null 0.0.0.0:3838/healthz || exit 1
+  CMD curl -sfI -o /dev/null 0.0.0.0:3838 || exit 1
 
 ENV HOME /home/user
 
@@ -32,8 +32,7 @@ COPY app.R /home/user/shiny/app.R
 COPY robots.txt /home/user/shiny/robots.txt
 COPY favicon.ico /home/user/shiny/favicon.ico
 
-RUN  touch /home/user/shiny/healthz \
-  && mkdir -p /home/user/logs \
+RUN  mkdir -p /home/user/logs \
   && mkdir -p /home/user/plots \
   && chgrp -R 0 /home/user \
   && chmod -R g=u /home/user /etc/passwd

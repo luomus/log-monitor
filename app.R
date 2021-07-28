@@ -336,7 +336,6 @@ server <- function(input, output, session) {
   )
 
   addResourcePath("robots.txt", "~/shiny/robots.txt")
-  addResourcePath("healthz", "~/shiny/healthz")
   addResourcePath("favicon.ico", "~/shiny/favicon.ico")
 
 }
