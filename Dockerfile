@@ -1,4 +1,4 @@
-FROM rocker/r-ver:4.1.0
+FROM rocker/r-ver:4.1.1
 
 RUN install2.r -s -e \
       dplyr \
@@ -45,4 +45,4 @@ EXPOSE 3838
 
 ENTRYPOINT ["entrypoint.sh"]
 
-CMD ["R", "-e", "shiny::runApp('~/shiny', port = 3838, host = '0.0.0.0')"]
+CMD ["R", "--slave", "-e", "shiny::runApp('~/shiny', port = 3838, host = '0.0.0.0')"]

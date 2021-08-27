@@ -25,6 +25,11 @@ for (pkg in pkgs) {
 log_dir <- "~/logs"
 
 read_plumber_log <- function(log_file) {
+
+  tt <- Sys.getenv("TESTTHAT")
+  Sys.setenv(TESTTHAT = "true")
+  on.exit(Sys.setenv(TESTTHAT = tt))
+
   readr::read_log(
     file = log_file,
     col_names = c(
@@ -32,6 +37,7 @@ read_plumber_log <- function(log_file) {
       "endpoint", "status", "execution_time"
     )
   )
+
 }
 
 ui <- dashboardPage(
@@ -154,6 +160,7 @@ server <- function(input, output, session) {
       dplyr::mutate(p = count / sum(count)) %>%
       dplyr::filter(status < 400L) %>%
       dplyr::pull(p) %>%
+      sum() %>%
       round(4L)
 
     valueBox(
