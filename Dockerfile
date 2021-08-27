@@ -45,4 +45,4 @@ EXPOSE 3838
 
 ENTRYPOINT ["entrypoint.sh"]
 
-CMD ["R", "--slave", "-e", "shiny::runApp('~/shiny', port = 3838, host = '0.0.0.0')"]
+CMD ["R", "--slave", "-e", "shiny::runApp('~/shiny', port = 3838, host = '0.0.0.0', quiet = TRUE)"]

@@ -26,16 +26,13 @@ log_dir <- "~/logs"
 
 read_plumber_log <- function(log_file) {
 
-  tt <- Sys.getenv("TESTTHAT")
-  Sys.setenv(TESTTHAT = "true")
-  on.exit(Sys.setenv(TESTTHAT = tt))
-
   readr::read_log(
     file = log_file,
     col_names = c(
       "log_level", "timestamp", "remote_addr",  "user_agent", "host", "method",
       "endpoint", "status", "execution_time"
-    )
+    ),
+    col_types = cols()
   )
 
 }
@@ -218,12 +215,14 @@ server <- function(input, output, session) {
 
     tmp <- tempfile(tmpdir = "~/plots", fileext = ".svg")
 
-    grDevices::svg(
-      tmp,
-      session$clientData$output_requests_plot_width *
-        session$clientData$pixelratio / 96L,
-      session$clientData$output_requests_plot_height *
-        session$clientData$pixelratio / 96L
+    suppressWarnings(
+      grDevices::svg(
+        tmp,
+        session$clientData$output_requests_plot_width *
+          session$clientData$pixelratio / 96L,
+        session$clientData$output_requests_plot_height *
+          session$clientData$pixelratio / 96L
+      )
     )
 
     gg <- filtered_log() %>%
@@ -249,12 +248,14 @@ server <- function(input, output, session) {
 
     tmp <- tempfile(tmpdir = "~/plots", fileext = ".svg")
 
-    grDevices::svg(
-      tmp,
-      session$clientData$output_status_plot_width *
-        session$clientData$pixelratio / 96L,
-      session$clientData$output_status_plot_height *
-        session$clientData$pixelratio / 96L
+    suppressWarnings(
+      grDevices::svg(
+        tmp,
+        session$clientData$output_status_plot_width *
+          session$clientData$pixelratio / 96L,
+        session$clientData$output_status_plot_height *
+          session$clientData$pixelratio / 96L
+      )
     )
 
     gg <- filtered_log() %>%
@@ -280,12 +281,14 @@ server <- function(input, output, session) {
 
     tmp <- tempfile(tmpdir = "~/plots", fileext = ".svg")
 
-    grDevices::svg(
-      tmp,
-      session$clientData$output_endpoints_plot_width *
-        session$clientData$pixelratio / 96L,
-      session$clientData$output_endpoints_plot_height *
-        session$clientData$pixelratio / 96L
+    suppressWarnings(
+      grDevices::svg(
+        tmp,
+        session$clientData$output_endpoints_plot_width *
+          session$clientData$pixelratio / 96L,
+        session$clientData$output_endpoints_plot_height *
+          session$clientData$pixelratio / 96L
+      )
     )
 
     gg <- filtered_log() %>%
@@ -314,12 +317,14 @@ server <- function(input, output, session) {
 
     tmp <- tempfile(tmpdir = "~/plots", fileext = ".svg")
 
-    grDevices::svg(
-      tmp,
-      session$clientData$output_users_plot_width *
-        session$clientData$pixelratio / 96L,
-      session$clientData$output_users_plot_height *
-        session$clientData$pixelratio / 96L
+    suppressWarnings(
+      grDevices::svg(
+        tmp,
+        session$clientData$output_users_plot_width *
+          session$clientData$pixelratio / 96L,
+        session$clientData$output_users_plot_height *
+          session$clientData$pixelratio / 96L
+      )
     )
 
     gg <- filtered_log() %>%
