@@ -1,2 +1,3 @@
-# log-monitor
-web-app to monitor log files
+# Log Monitor
+
+A web-application to monitor log files
