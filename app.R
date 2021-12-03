@@ -107,14 +107,14 @@ server <- function(input, output, session) {
     1000,
     checkFunc = function() {
 
-      files <- fs::dir_ls(log_dir)
+      files <- fs::dir_ls(log_dir, regex = "[.]log$")
 
       fs::file_info(files)$modification_time
 
     },
     valueFunc = function() {
 
-      files <- fs::dir_ls(log_dir)
+      files <- fs::dir_ls(log_dir,  regex = "[.]log$")
 
       purrr::map2_df(
         files, fs::file_info(files)$modification_time, mem_read_plumber_log
