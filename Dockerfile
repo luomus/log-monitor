@@ -32,8 +32,7 @@ COPY app.R /home/user/shiny/app.R
 COPY robots.txt /home/user/shiny/robots.txt
 COPY favicon.ico /home/user/shiny/favicon.ico
 
-RUN  mkdir -p /home/user/logs \
-  && mkdir -p /home/user/plots \
+RUN  mkdir -p /home/user/plots \
   && chgrp -R 0 /home/user \
   && chmod -R g=u /home/user /etc/passwd
 
