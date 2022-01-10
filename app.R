@@ -22,14 +22,14 @@ for (pkg in pkgs) {
 
 }
 
-log_dir <- "~/logs"
+log_dir <- Sys.getenv("LOG_DIR")
 
 read_plumber_log <- function(log_file) {
 
   readr::read_log(
     file = log_file,
     col_names = c(
-      "log_level", "timestamp", "remote_addr",  "user_agent", "host", "method",
+      "log_level", "timestamp", "remote_addr", "user_agent", "host", "method",
       "endpoint", "status", "execution_time"
     ),
     col_types = cols()
