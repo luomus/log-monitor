@@ -1,4 +1,4 @@
-FROM rocker/r-ver:4.1.1
+FROM rocker/r-ver:4.1.2
 
 RUN install2.r -s -e \
       dplyr \
